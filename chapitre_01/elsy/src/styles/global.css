@@ -1,0 +1,13 @@
+.pair {
+    background-color: #cccccc;
+}
+
+.impair {
+    background-color: #aaaaaa;
+}
+
+.box {
+    width: 190px;
+    padding: 8px;
+    text-align: center;
+}
