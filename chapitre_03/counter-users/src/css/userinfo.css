@@ -1,0 +1,17 @@
+.user-container {
+    border: thick double white;
+    width: 25rem;
+
+    margin: 0.7rem;
+}
+
+.flex-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    text-align: center;
+    margin: 0.3rem;
+}
