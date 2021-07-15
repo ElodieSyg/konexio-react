@@ -9,24 +9,61 @@ class App extends React.Component {
     super();
 
     this.state = {
-      count: 0,
+      countOne: 5,
+      countTwo: 7,
     }
   }
 
   // state = toujours le state précédent et màj //
   handleClickMore = () => {
+    if (this.state.countOne >= 100) {
+      return;
+    }
+
+    if (this.state.countOne === this.state.countTwo - 1) {
+      this.setState(state => ({
+        countTwo: state.countTwo + 1
+      })) 
+    }
+
     this.setState(state => ({
-      count: state.count + 1
+      countOne: state.countOne + 1
     }))
   }
 
   handleClickLess = () => {
-    if (this.state.count === 0) {
+    if (this.state.countOne === 0) {
       return;
     }
 
     this.setState(state => ({
-      count: state.count - 1
+      countOne: state.countOne - 1
+    }))
+  }
+
+  secondHandleClickMore = () => {
+    if (this.state.countTne >= 100) {
+      return;
+    }
+
+    this.setState(state => ({
+      countTwo: state.countTwo + 1
+    }))
+  }
+
+  secondHandleClickLess = () => {
+    if (this.state.countTwo === 0) {
+      return;
+    }
+
+    if (this.state.countTwo === this.state.countOne + 1) {
+      this.setState(state => ({
+        countOne: state.countOne - 1
+      })) 
+    }
+
+    this.setState(state => ({
+      countTwo: state.countTwo - 1
     }))
   }
 
@@ -34,7 +71,15 @@ class App extends React.Component {
     return (
       <div>
         <h1>COUNTER</h1>
-        <Counter count={this.state.count} clickLess={this.handleClickLess} clickMore={this.handleClickMore}/>
+        <div className="flex-box container">
+          <h2 className="margin-auto">Counter 1 :</h2>
+          <Counter count={this.state.countOne} clickLess={this.handleClickLess} clickMore={this.handleClickMore}/>
+        </div>
+
+        <div className="flex-box container">
+        <h2 className="margin-auto">Counter 2 :</h2>
+        <Counter count={this.state.countTwo} clickLess={this.secondHandleClickLess} clickMore={this.secondHandleClickMore}/>
+        </div>
       </div>
     )
   }

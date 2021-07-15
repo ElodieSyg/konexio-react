@@ -3,11 +3,17 @@
   margin: 0;
 }
 
+html {
+  background-color: rgba(50, 133, 158, 0.911);
+  color: white;
+}
+
 .green {
   width: 3rem;
   height: 3rem;
 
   border-radius: 100%;
+  border-color: white;
 }
 
 .red {
@@ -15,9 +21,25 @@
   height: 3rem;
 
   border-radius: 100%;
+  border-color: white;
 }
 
 h1 {
   text-align: center;
   padding-bottom: 2rem;
+}
+
+.flex-box {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin-top: 1rem;
+}
+
+.margin-auto {
+  margin: 1rem;
 }
