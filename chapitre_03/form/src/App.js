@@ -5,16 +5,24 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 class App extends React.Component {
+  constructor() {
+    super();
 
-  renderInput(handleOnChange){
+    this.state = {
+      email: "",
+      password: "",
+    }
+  }
+
+  renderInputEmail(){
     let patt = new RegExp (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
-    let userEmail = handleOnChange
 
-    if (patt.test(userEmail) === true) {
+    if (patt.test(this.state.email)) {
       return (
         <input
+        onChange={this.handleOnChange}
         type="email"
-        className="form-control border border-sucess"
+        className="form-control border border-success"
         id="inputEmail"
         aria-describedby="emailHelp"
         placeholder="Enter email..."/>
@@ -22,6 +30,7 @@ class App extends React.Component {
     } else {
       return (
         <input
+        onChange={this.handleOnChange}
         type="email"
         className="form-control border border-danger"
         id="inputEmail"
@@ -31,8 +40,14 @@ class App extends React.Component {
     }
   }
 
+  renderInputPassword(){
+    let patt = new RegExp ()
+  }
+
   handleOnChange = (e) => {
-    console.log(e.target.value)
+    this.setState({
+      email: e.target.value
+    })
   }
 
   handleSubmit = (e) => {
@@ -45,8 +60,8 @@ class App extends React.Component {
         <h1 className="title">Login</h1>
         <form className="container" onSubmit={this.handleSubmit}>
                 <div className="mb-3">
-                    <label onChange={this.hangleOnChange} for="inputEmail" className="form-label">Email address</label>
-                    {this.renderInput()}
+                    <label for="inputEmail" className="form-label">Email address</label>
+                    {this.renderInputEmail()}
                 </div>
 
                 <div className="mb-3">

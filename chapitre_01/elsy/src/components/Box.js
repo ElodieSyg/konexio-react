@@ -12,7 +12,7 @@ class Box extends React.Component {
                     {this.props.icon}
                     </span> 
                     <p>{this.props.value} {this.props.unit}</p>
-                    <input type="range" value={this.props.value} onChange={this.props.onChange} calculate={this.props.calculate} id="rangeBtn" name="rangeBtn" min={this.props.min} max={this.props.max}/>
+                    <input type="range" value={this.props.value} onChange={this.props.onChange} name={this.props.name} calculate={this.props.calculate} id="rangeBtn" name="rangeBtn" min={this.props.min} max={this.props.max}/>
 
                 </div>
             )

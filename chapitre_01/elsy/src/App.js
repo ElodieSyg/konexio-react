@@ -30,39 +30,45 @@ class App extends React.Component {
     this.setState({
       heart: e.target.value,
     })
+    this.calculateWater()
   }
 
   onStepsChange = (e) => {
     this.setState({
       steps: e.target.value,
     })
+    this.calculateWater()
   }
 
   onTempChange = (e) => {
     this.setState({
       temperature: e.target.value,
     })
+    this.calculateWater()
   }
 
-  calculateWater = () => {    
+  handleChange = e => {
+    this.setState({
+        [e.target.name]: e.target.value
+    })
+    this.calculateWater();
+  }
+
+  calculateWater = () => { 
     if (this.state.temperature > 20) {
-      this.setState(prevState => ({
-        water: prevState.water + 10
-      }))
-    }
-  
-    if (this.state.steps > 10000) {
-      this.setState(prevStep => ({
-        water: prevStep.steps + 0.0008
-      }))
-    }
+      this.setState({
+        water: this.state.water * 0.02
+    })}
     
-  
+    if (this.state.steps > 10000) {
+      this.setState({
+        water: this.state.steps * 0.0008
+    })}  
+    
     if (this.state.heart > 10000) {
-      this.setState(prevHeart => ({
-        water: this.prevHeart.steps + 0.00002
-      }))
-    }
+      this.setState({
+        water: this.state.steps * 0.00002
+      })}
   }
 
   render() { 
@@ -70,7 +76,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           {/*Water box */}
-          <Box icon="local_drink" color="#3A85FF" value={this.state.water} unit="L" calculate={this.calculateWater} />
+          <Box icon="local_drink" color="#3A85FF" value={this.state.water} unit="L" />
           {/*Steps box */}
           <Box icon="directions_walk" color="black" value={this.state.steps} unit="steps" onChange={this.onStepsChange} min={stepsMin} max={stepsMax} />
           {/*Heart box */}
