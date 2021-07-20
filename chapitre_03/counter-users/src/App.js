@@ -39,10 +39,16 @@ class App extends React.Component {
     return(
     <div>
         <h1>COUNTER</h1>
+
         <Counter count={this.state.count} clickLess={this.handleClickLess} clickMore={this.handleClickMore}/>
-        {users.slice(0, this.state.count).map((user) => (
-					<UserInfo name={user.name} email={user.email} />
+
+        {users.slice(0, this.state.count).map(user => (
+					<UserInfo 
+            key = {user.id}
+            name={user.name}
+            email={user.email} />
 				))}
+
     </div>
   )}
 }
