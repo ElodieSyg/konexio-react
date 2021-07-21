@@ -6,3 +6,25 @@
 .title {
   text-align: center;
 }
+
+.isSubmit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 2rem;
+}
+
+.bck-color {
+  background-color: rgb(207, 207, 207);
+  width: 25rem;
+  height: 10rem;
+
+  border-radius: 2%;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.7rem;
+}

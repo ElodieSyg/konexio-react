@@ -11,6 +11,7 @@ class App extends React.Component {
     this.state = {
       email: "",
       password: "",
+      isSubmit: false,
     }
   }
 
@@ -20,9 +21,9 @@ class App extends React.Component {
     if (patt.test(this.state.email)) {
       return (
         <input
-        onChange={this.handleOnChange}
+        onChange={this.handleOnChangeEmail}
         type="email"
-        className="form-control border border-success"
+        className="form-control border border-success is-valid"
         id="inputEmail"
         aria-describedby="emailHelp"
         placeholder="Enter email..."/>
@@ -30,9 +31,9 @@ class App extends React.Component {
     } else {
       return (
         <input
-        onChange={this.handleOnChange}
+        onChange={this.handleOnChangeEmail}
         type="email"
-        className="form-control border border-danger"
+        className="form-control border border-danger is-invalid"
         id="inputEmail"
         aria-describedby="emailHelp"
         placeholder="Enter email..."/>
@@ -41,12 +42,49 @@ class App extends React.Component {
   }
 
   renderInputPassword(){
-    let patt = new RegExp ()
-  }
+    let patt = new RegExp (/[0-9a-zA-Z]{6,}/)
 
-  handleOnChange = (e) => {
+    if (patt.test(this.state.password)) {
+      return (
+        <input 
+          onChange={this.handleOnChangePassword}
+          type="password" 
+          className="form-control border border-success is-valid" 
+          id="inputPassword" 
+          placeholder="Enter password..."/>      
+      )} else {
+        return (
+          <input 
+            onChange={this.handleOnChangePassword}
+            type="password" 
+            className="form-control border border-danger is-invalid" 
+            id="inputPassword" 
+            placeholder="Enter password..."/>      
+        )}  
+    }
+
+    renderModal() {
+      if (this.state.isSubmit === true) {
+        return (
+          <div className="d-flex p-2 bd-highlight justify-content-center">
+            <div className="bck-color">
+              Form submitted !
+            </div>
+          </div>
+          )};
+
+        return null
+    };
+
+  handleOnChangeEmail = (e) => {
     this.setState({
       email: e.target.value
+    })
+  }
+
+  handleOnChangePassword = (e) => {
+    this.setState({
+      password: e.target.value
     })
   }
 
@@ -54,11 +92,24 @@ class App extends React.Component {
     e.preventDefault();
   }
 
+  handleClick = () => {
+    this.setState({
+      isSubmit: true,
+    })
+    console.log("you clicked")
+  }
+
   render() {
     return(
-      <div>
+      <div>        
         <h1 className="title">Login</h1>
-        <form className="container" onSubmit={this.handleSubmit}>
+        <form 
+          className="container" 
+          onSubmit={this.handleSubmit}
+          style={(this.state.isSubmit)
+            ? { display: "none" }
+            : { display: "block" }
+      }>
                 <div className="mb-3">
                     <label for="inputEmail" className="form-label">Email address</label>
                     {this.renderInputEmail()}
@@ -66,20 +117,17 @@ class App extends React.Component {
 
                 <div className="mb-3">
                     <label for="inputPassword" className="form-label">Password</label>
-                    <input 
-                    type="password" 
-                    className="form-control border" 
-                    id="inputPassword" 
-                    placeholder="Enter password..."/>
+                    {this.renderInputPassword()}
                 </div>
 
                 <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="rememberMe"/>
+                    <input type="checkbox" className="form-check-input" id="rememberMe" />
                     <label className="form-check-label" for="rememberMe">Remember me</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onClick={this.handleClick}>Submit</button>
             </form>
+            {this.renderModal()}
       </div>
     )
   }
