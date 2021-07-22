@@ -1,0 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.button-container {
+  margin-bottom: 2rem;
+}
+
+.margin {
+  margin-right: 10rem;
+}
