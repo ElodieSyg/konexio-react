@@ -1,5 +1,8 @@
 import React from 'react';
-import Card from './Card'
+// Components
+import Card from './Card';
+// Keys library
+import { v4 as uuid } from "uuid";
 
 class Pay extends React.Component {
     constructor() {
@@ -15,38 +18,47 @@ class Pay extends React.Component {
     }
 
     handleSelect = (name, price) => {
-        console.log(name)
-        console.log(price)
+        let newTotal = price + this.state.total;
+        let newTotalEcoTax = (this.state.basket.length + 1) * 0.03;
+        let newTotalTVA = (newTotal * 20) / 100;
+
+        this.setState((prevState) => ({
+            basket: [
+              ...prevState.basket,
+              {
+                name: name,
+                price: price,
+              },
+            ],
+            total: newTotal,
+            totalEcoTax: newTotalEcoTax,
+            totalTVA: newTotalTVA,
+            totalTTC: newTotal + newTotalEcoTax + newTotalTVA,
+          }))
     }
+
 
 	render() {
 		return (
 			<div>
                 <h1>Pay</h1>
 
-                <div>
-                    <p>SubTotal: {this.state.total}</p>
-                    <p>Total TVA : {this.state.totalTVA}</p>
-                    <p>Total Eco Tax : {this.state.totalEcoTax}</p>
-                    <p>Total TTC : {this.state.totalTTC}</p>
-
+                <div className="text-end">
+                        <p>SubTotal: {this.state.total}€</p>
+                        <p>Total TVA : {this.state.totalTVA}€</p>
+                        <p>Total Eco Tax : {this.state.totalEcoTax}€</p>
+                        <p>Total TTC : {this.state.totalTTC}€</p>
                 </div>
 
-				<p>
-					Total:{" "}
-					{this.props.items.reduce(
-						(accumulator, currentItem) =>
-							(accumulator += currentItem.price),
-						0
-					)}
-					€
-				</p>
-
-                {this.props.items.map(item => {
-                    return (
-                        <Card productName={this.props.productName} price={this.props.price}/>
-                    )
-                })}
+                <div>
+                    {this.props.items.map((item) => {
+                        return (
+                        <li className="list-group-item border-0" key={uuid()}>
+                            <Card onClick={() => {this.handleSelect(item.name, item.price);}} productName={item.name}/>
+                        </li>
+                        );
+                    })}
+                </div>
 			</div>
 		);
 	}

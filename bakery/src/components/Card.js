@@ -30,14 +30,10 @@ class Card extends React.Component {
         })
     }
 
-    handleClick = () => {
-        return (`${this.props.productName}${this.props.price} x 1`)
-    }
-
     render() {
         return(
             <div>
-                <button onClick={this.handleClick}>
+                <button onClick={() => this.props.onClick(this.props.productName, this.props.price)}>
                     <img style={{width:"200px"}} src={this.state.image} alt="img"></img>
                 </button>
             </div>

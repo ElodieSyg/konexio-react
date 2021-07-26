@@ -54,7 +54,7 @@ class Add extends React.Component {
                     onChange={this.updatePrice}
                     value={this.state.price}
                     min="0"
-                    max="100" />
+                    max="10" />
             </div>
         )
     }
