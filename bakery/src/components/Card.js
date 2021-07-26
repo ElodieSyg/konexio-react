@@ -12,7 +12,7 @@ class Card extends React.Component {
     }
 
     componentDidMount() {
-    this.handleFetch("item")
+    this.handleFetch("croissant")
     }
 
     handleFetch(productName) {
@@ -30,11 +30,15 @@ class Card extends React.Component {
         })
     }
 
+    handleClick = () => {
+        return (`${this.props.productName}${this.props.price} x 1`)
+    }
+
     render() {
         return(
             <div>
-                <button>
-                    <img src={this.state.image} alt="item"></img>
+                <button onClick={this.handleClick}>
+                    <img style={{width:"200px"}} src={this.state.image} alt="img"></img>
                 </button>
             </div>
         );
