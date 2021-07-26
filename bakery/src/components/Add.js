@@ -9,33 +9,40 @@ class Add extends React.Component {
         this.state = {
             productName: "",
             price: 1,
-        }
+        };
     }
 
     updateProductName = (e) => {
-        this.setState(prevState => {
-          return {
-            ...prevState,
-            productName: e.target.value,
-          }
-        })
-      }
+        this.setState((prevState) => {
+			return {
+				...prevState,
+				productName: e.target.value,
+			};
+		});
+	};
 
     updatePrice = (e) => {
-        this.setState(prevState => {
-            return {
-                ...prevState,
-                price: e.target.value,
-            }
-        })
-    }
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				price: parseInt(e.target.value),
+			};
+		});
+	};
+
+    handleAddItem = () => {
+		this.props.addItem(this.state.productName, this.state.price);
+	};
 
     render() {
         return(
             <div className="container d-flex flex-column bd-highlight mb-3">
                 <div className="input-group">
                         <input type="text" className="form-control" onChange={this.updateProductName}/>
-                        <button type="button" className="btn btn-outline-primary" addItem={this.props.addItem}>Add</button>
+                        <button
+                        type="button" 
+                        className="btn btn-outline-primary"
+                        onClick={() => this.props.addItem(this.state.productName, this.state.price)}>Add</button>
                 </div>
 
                     <label for="price" className="p-2 bd-highligh">{this.state.price}€</label>

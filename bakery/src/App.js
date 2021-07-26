@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
       activeTab: "",
-      items:[],
+      items: [],
     }
   }
 
@@ -47,30 +47,35 @@ class App extends React.Component {
     })
   }
 
-  addItem = (name, price) => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        items: this.props.state.name + this.props.state.price
-      }
-    })
-  }
+  handleAddItem = (productName, price) => {
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				items: [
+					...prevState.items,
+					{ productName: productName, price: price },
+				],
+			};
+		});
+	};
 
   isSelect() {
     if (this.state.activeTab === "list") {
       return (
-      < List />
+      < List items={this.state.items}/>
     )
     } if (this.state.activeTab === "pay") {
       return (
-      < Pay />
+      < Pay items={this.state.items}/>
       )
     } else if (this.state.activeTab === "add") {
       return (
-      < Add addItem={this.addItem}/>
+      < Add addItem={this.handleAddItem}/>
       )
     }
   }
+
+
 
   render() {
     return(
@@ -78,9 +83,9 @@ class App extends React.Component {
         <h1 className="text-center">Bakery</h1>
           <div className="d-flex flex-sm-column bd-highlight mb-3">
             <div className="d-flex button-container">
-              <Button onClick={this.selectAdd} children="Add" className="p-2 bd-highlight margin" />
-              <Button onClick={this.selectList} children="List" className="p-2 bd-highlight margin" />
-              <Button onClick={this.selectPay} children="Pay" className="p-2 bd-highlight margin  " />
+              <Button onClick={this.selectAdd} className="p-2 bd-highlight margin">Add</Button>
+              <Button onClick={this.selectList} className="p-2 bd-highlight margin">List</Button>
+              <Button onClick={this.selectPay} className="p-2 bd-highlight margin  ">Pay</Button>
             </div>
             {this.isSelect()}
           </div>

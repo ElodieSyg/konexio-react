@@ -20,26 +20,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/name/france")
-    .then((res) => res.json())
-    .then((data) => {
-      const country = data[0];
-
-      this.setState({
-        name: country.name,
-        capital: country.capital,
-        flag: country.flag,
-        population: country.population,
-        region: country.region,
-      })
-    })
+    this.getCountry("France")
   }
 
   getCountry = (country) => {
-    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+    fetch(`http://localhost:3000/country/${country}`)
     .then((res) => res.json())
     .then((data) => {
-      const country = data[0];
+      const country = data.data[0];
 
       this.setState({
         name: country.name,
@@ -50,6 +38,8 @@ class App extends React.Component {
       })
     })
   }
+
+  
 
   render() {
     return (
@@ -57,9 +47,9 @@ class App extends React.Component {
           <h1 className="text-center m-3">Country Selector</h1>
 
           <div className="d-flex justify-content-evenly">
-            < Button children="France" onClick={() => this.getCountry("France")}>France</Button>
-            < Button children="Brazil" onClick={() => this.getCountry("Brazil")}>Brazil</Button>
-            < Button children="Croatia" onClick={() => this.getCountry("Croatia")}>Croatia</Button>
+            < Button onClick={() => this.getCountry("France")}>France</Button>
+            < Button onClick={() => this.getCountry("Brazil")}>Brazil</Button>
+            < Button onClick={() => this.getCountry("Croatia")}>Croatia</Button>
           </div>
 
             < Card info={this.state}/>
