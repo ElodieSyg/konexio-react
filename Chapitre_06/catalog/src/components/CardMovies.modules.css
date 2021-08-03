@@ -1,0 +1,25 @@
+* {
+    padding: 0.5rem;
+    margin: 0%;
+}
+
+.width-img {
+    width: 20rem;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+}
+
+.button:hover {
+    color: white;
+}
+
+.border {
+    border: 1rem solid grey;
+}
+
+.bold {
+    font-weight: bold;
+}
