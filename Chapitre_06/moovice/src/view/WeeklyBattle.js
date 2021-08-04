@@ -7,6 +7,7 @@ const WeeklyBattle = () => {
         <div>
             < Menu />
             <h1>WeeklyBattle</h1>
+            
         </div>
     )
 }

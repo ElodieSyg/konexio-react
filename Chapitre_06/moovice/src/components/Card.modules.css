@@ -1,0 +1,7 @@
+.min-width {
+    width: min-content;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
