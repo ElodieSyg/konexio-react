@@ -71,10 +71,10 @@ const PopularBattle = () => {
                         <p className='fw-light'>{movie.overview}</p>
                     </div>
                 ))}
-                    <Button color='dark' style={{ height: "5rem" }} onClick={handleClick}><Link className='text-decoration-none text-white'>></Link></Button>
+                    <Button color='dark' style={{ height: "5rem" }} onClick={handleClick}><Link className='text-decoration-none text-white'></Link></Button>
             </div>
         </div>
-    )
-                }
+    );
+};
 
 export default PopularBattle;
