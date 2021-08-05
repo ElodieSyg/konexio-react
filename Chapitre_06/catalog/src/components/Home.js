@@ -17,7 +17,7 @@ const Home = () => {
             <div className="d-flex justify-content-center input-group mb-3 mt-5">
                 <Dropdown isOpen={dropDownOpen} toggle={toggle}>
                     <DropdownToggle caret>
-                        Dropdown
+                        Movies
                     </DropdownToggle>
                     <DropdownMenu>
                         {moviesList.map((movie, id) => (

@@ -6,9 +6,9 @@ const Favorites = () => {
     return (
         <div>
             < Menu />
-            <h1>Favorites</h1>
+            <h1>{localStorage.getItem('favorite')}</h1>
         </div>
     )
-}
+} 
 
 export default Favorites;

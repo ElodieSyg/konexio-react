@@ -6,13 +6,10 @@ import Card from '../components/Card'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Popular = () => {
-
     return (
         <div>
-            < Menu />
-
-            <h1>Popular</h1>
-                    <div><Card /></div>
+            < Menu />            
+            < Card />
         </div>
     );
 };
