@@ -14,13 +14,9 @@ const PopularBattle = (props) => {
     const [counter1, setCounter1] = useState(0)
     const [counter2, setCounter2] = useState(2)
     const [isFinish, setIsFinish] = useState(false)
-    const [id, setId] = useState(localStorage.getItem('favorites') || [])
-
+    const [id, setId] = useState([])
 
     let API_KEY = '431d1d399f92c96d37b93376cf673640'
-
-    console.log(data)
-
 
     useEffect(() => { 
         const fetchData = async () => {
@@ -31,14 +27,27 @@ const PopularBattle = (props) => {
         };
         fetchData();
     }, [API_KEY]);
+
+    useEffect(() => {
+        const initialLocalStorage = JSON.parse(localStorage.getItem('favorites'))
+            if (initialLocalStorage) {
+                setId(initialLocalStorage)
+            }
+    }, [])
+
+    useEffect(() => {
+        console.log(id)
+        localStorage.setItem('favorites', JSON.stringify(id))
+    }, [id])
     
     const handleClick = (idMovie) => {
-        let stateCopy = [...id, idMovie.toString()]
-
-        localStorage.setItem('favorites', stateCopy)
+        console.log(id)
+        setId(prevState => [...prevState, idMovie])
+        console.log(idMovie)
 
         setCounter1(prevCounter => prevCounter + 2)
         setCounter2(prevCounter => prevCounter + 2)
+        
         console.log(counter1)
         console.log(counter2)
         console.log("you click")
@@ -66,7 +75,7 @@ const PopularBattle = (props) => {
                 <Menu />
                     <div className='container d-flex align-items-center' >
                         {data.slice(counter1, counter2).map((movie) => (
-                        <div className='border movie-width' key={uuid()} onClick={() => handleClick(movie.id)}>
+                        <div className='border movie-width hover' key={uuid()} onClick={() => handleClick(movie.id)}>
                             <div className='d-flex flex-column align-items-center mb-3'>
                                 <img
                                 src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}

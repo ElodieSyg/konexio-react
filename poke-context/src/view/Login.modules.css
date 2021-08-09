@@ -1,0 +1,33 @@
+* {
+    background-color: black;
+}
+
+.input {
+    width: 100%;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
+.btn-submit {
+    background-color: rgb(253, 82, 110);
+    color: white;
+}
+
+.input-bck {
+    background-color: white;
+    color: black;
+}
+
+.input-heigth {
+    height: 3rem;
+}
+
+.white-text {
+    color: white;
+}

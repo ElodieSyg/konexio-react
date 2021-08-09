@@ -1,0 +1,29 @@
+
+.navBar {
+    height: 5rem;
+    background-color: black;
+}
+
+.navFlex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mr-3 {
+    margin-right: 3rem;
+}
+
+.mr-5 {
+    margin-right: 5rem;
+}
+
+.textDecoration {
+    text-decoration: none;
+    color: white;
+}
+
+.text:hover {
+    border: 1px solid white;
+    color: white;
+}

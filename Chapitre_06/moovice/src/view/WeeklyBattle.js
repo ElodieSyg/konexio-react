@@ -15,7 +15,7 @@ const WeeklyBattle = () => {
     const [counter1, setCounter1] = useState(0);
     const [counter2, setCounter2] = useState(2);
     const [isFinish, setIsFinish] = useState(false)
-    const [id, setId] = useState(localStorage.getItem('favorites') || [])
+    const [id, setId] = useState(localStorage.getItem('favorites') || [])//
 
     let API_KEY = '431d1d399f92c96d37b93376cf673640';
     let today = moment().format('YYYY-MM-DD');
@@ -65,7 +65,7 @@ const WeeklyBattle = () => {
                 <Menu />
                     <div className='container d-flex align-items-center' >
                         {data.slice(counter1, counter2).map((movie) => (
-                        <div className='border movie-width' key={uuid()} onClick={() => handleClick(movie.id)}>
+                        <div className='border movie-width hover' key={uuid()} onClick={() => handleClick(movie.id)}>
                             <div className='d-flex flex-column align-items-center mb-3'>
                                 <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt="poster" style={{ width: "150px" }} className='d-flex flex-column bd-highlight mb-3'/>
                                 <p className='fw-bold mt-3 d-flex flex-column bd-highlight mb-3'>{movie.title}</p>

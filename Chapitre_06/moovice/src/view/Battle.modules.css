@@ -12,3 +12,7 @@
     height: 50rem;
     padding: 1rem;
 }
+
+.hover:hover {
+    background-color: rgba(212, 212, 212, 0.575);
+}
