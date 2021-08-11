@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../components/ComponentProvider';
+// Context
+import { UserContext } from '../components/LogContext';
+import { PokemonContext } from '../components/HistoryContext';
 // Components
 import Navbar from '../components/Navbar';
 // Axios
@@ -12,6 +14,7 @@ const Home = () => {
     const [id, setId] = useState(1)
 
     const logState = useContext(UserContext)
+    const savePokemon = useContext(PokemonContext)
 
     useEffect(() => { 
         const fetchData = async () => {
@@ -22,13 +25,14 @@ const Home = () => {
         fetchData();
     }, [id]);
 
-    const handleClickRandomNumber = () => {
-        return setId(Math.floor(Math.random() * 100) + 1)
-    }
+    const handleClick = () => {
+        setId(Math.floor(Math.random() * 100) + 1)
+        savePokemon.setState(prevState => [...prevState, id])
+    };
 
     if (!pokemon) {
         return (null) // loader 
-    }
+    };
 
     if (!logState.state) {
         return (
@@ -42,7 +46,7 @@ const Home = () => {
             <div>
                 <Navbar/>
                 <div>
-                    <button className='container-title home-input' onClick={handleClickRandomNumber}>
+                    <button className='container-title home-input' onClick={handleClick}>
                     G&nbsp;&nbsp;E&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;O&nbsp;&nbsp;K&nbsp;&nbsp;E&nbsp;&nbsp;M&nbsp;&nbsp;O&nbsp;&nbsp;N
                     </button>
                 </div>

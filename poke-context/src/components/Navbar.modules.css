@@ -24,6 +24,5 @@
 }
 
 .text:hover {
-    border: 1px solid white;
-    color: white;
+    color: rgb(253, 82, 110);
 }
