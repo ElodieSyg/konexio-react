@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { UserContext } from '../components/ComponentProvider';
 // Components
 import Navbar from '../components/Navbar';
 // CSS
 import './Login.modules.css';
 
 function Login() {
+    const logState = useContext(UserContext)
+
     const {
         register,
         handleSubmit,
@@ -14,6 +18,10 @@ function Login() {
     const onSubmit = (data, e) => {
         console.log(data, e.target.value);
     };
+
+    const handleClickSubmit = () => {
+        logState.setState(!logState.state)
+    }
 
     return (
         <div>
@@ -28,8 +36,12 @@ function Login() {
 
                         {errors.username && <span className='white-text'>Usename can have maximum 15 characters.</span>}
                         {errors.password && <span className='white-text'>Password need to be more than 6 characters.</span>}
-
-                        <button type='password' className='column input mt-3 btn-submit input-heigth'>SE CONNECTER</button>
+    
+                        {(logState.state) 
+                        ? <button type='password' className='column input mt-3 btn-submit input-heigth' onClick={handleClickSubmit}>SE DECONNECTER</button>
+                        : <button type='password' className='column input mt-3 btn-submit input-heigth' onClick={handleClickSubmit}>SE CONNECTER</button>
+                        };
+                        
                     </form>
                 </div>
         </div>
