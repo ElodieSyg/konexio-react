@@ -10,16 +10,18 @@ import Favorites from './view/Favorites';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // Bootstrap 
 import 'bootstrap/dist/css/bootstrap.min.css';
+// CSS 
+import './App.css'
 
 const App = () => {
 
-  return(
+  return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/weekly' component={Weekly} />
         <Route exact path='/weekly-battle' component={WeeklyBattle} />
-        <Route exact path='/popular'component={Popular} />
+        <Route exact path='/popular' component={Popular} />
         <Route exact path='/popular-battle' component={PopularBattle} />
         <Route exact path='/favorites' component={Favorites} />
       </Switch>
